@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #f8f9fa;
+  color: #1a1a2e;
+  -webkit-font-smoothing: antialiased;
+}
+
+.listening-pulse {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(26, 111, 181, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(26, 111, 181, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(26, 111, 181, 0); }
+}
+
+.step-line::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  bottom: -8px;
+  width: 2px;
+  background: #e2e8f0;
+}
+
+.step-item:last-child .step-line::before {
+  display: none;
+}
