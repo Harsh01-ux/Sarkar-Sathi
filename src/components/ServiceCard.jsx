@@ -27,28 +27,37 @@ export default function ServiceCard({ service, index = 0 }) {
     <Link
       to={`/service/${service.id}`}
       style={{ transitionDelay: `${(index % 6) * 80}ms` }}
-      className="block bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 hover:border-brand-300 dark:hover:border-slate-600 hover:shadow-sm transition-all group reveal-item"
+      tabIndex={0}
+      className="service-card block bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-lg p-4 group reveal-item"
     >
       <div className="flex items-start justify-between gap-3">
-        <div className="flex-1 min-w-0">
-          <div className="flex items-center gap-2 mb-1.5">
-            <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${colorClass}`}>
-              {service.category}
-            </span>
-            {service.application.onlineAvailable && (
-              <span className="text-xs text-gov-green dark:text-emerald-400 flex items-center gap-0.5">
-                <Globe size={11} />
-                Online
-              </span>
-            )}
+        <div className="flex items-start gap-3 flex-1 min-w-0">
+          <div className="w-10 h-10 rounded-lg bg-brand-50 dark:bg-slate-700/80 border border-brand-100/60 dark:border-slate-600/60 flex items-center justify-center shrink-0 mt-0.5 group-hover:bg-brand-100/70 dark:group-hover:bg-slate-700 transition-colors">
+            <Icon size={19} className="text-brand-600 dark:text-sky-400 service-card-icon" />
           </div>
-          <h3 className="font-semibold text-gray-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-sky-400 transition-colors">
-            {service.name.en} / {service.name.hi}
-          </h3>
-          <p className="text-sm text-gray-500 dark:text-slate-400 mt-1 line-clamp-2">{service.description}</p>
-          <div className="mt-2 text-xs text-gray-400 dark:text-slate-500">{service.department}</div>
+          <div className="flex-1 min-w-0">
+            <div className="flex items-center gap-2 mb-1">
+              <span className={`text-xs font-medium px-2 py-0.5 rounded-full ${colorClass}`}>
+                {service.category}
+              </span>
+              {service.application.onlineAvailable && (
+                <span className="text-xs text-gov-green dark:text-emerald-400 flex items-center gap-0.5 font-medium">
+                  <Globe size={11} />
+                  Online
+                </span>
+              )}
+            </div>
+            <h3 className="font-semibold text-gray-900 dark:text-slate-100 group-hover:text-brand-600 dark:group-hover:text-sky-400 group-focus-visible:text-brand-600 dark:group-focus-visible:text-sky-400 transition-colors leading-snug">
+              {service.name.en} / {service.name.hi}
+            </h3>
+            <p className="text-sm text-gray-500 dark:text-slate-400 mt-1 line-clamp-2">{service.description}</p>
+            <div className="mt-2 text-xs text-gray-400 dark:text-slate-500">{service.department}</div>
+          </div>
         </div>
-        <ChevronRight size={18} className="text-gray-300 dark:text-slate-600 group-hover:text-brand-400 dark:group-hover:text-sky-400 transition-colors mt-1 shrink-0" />
+        <ChevronRight
+          size={18}
+          className="service-card-arrow text-gray-300 dark:text-slate-600 group-hover:text-brand-500 dark:group-hover:text-sky-400 group-focus-visible:text-brand-500 dark:group-focus-visible:text-sky-400 mt-1 shrink-0"
+        />
       </div>
     </Link>
   );

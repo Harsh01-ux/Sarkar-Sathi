@@ -24,6 +24,10 @@ export function useScrollReveal() {
             entry.target.classList.add('revealed');
             // Animate once only
             observer.unobserve(entry.target);
+            const target = entry.target;
+            setTimeout(() => {
+              if (target) target.style.transitionDelay = '';
+            }, 700);
           }
         });
       },

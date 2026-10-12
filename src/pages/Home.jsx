@@ -34,8 +34,8 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Features */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      {/* Features / About */}
+      <div id="about" className="max-w-5xl mx-auto px-4 sm:px-6 py-12 scroll-mt-16">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-12">
           {features.map((f, idx) => (
             <div

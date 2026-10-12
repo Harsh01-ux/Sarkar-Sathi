@@ -136,3 +136,106 @@ html.dark .step-line::before,
 .step-item:last-child .step-line::before {
   display: none;
 }
+
+/* ==========================================================================
+   PART 1: Service card hover & focus effect
+   ========================================================================== */
+.service-card {
+  cursor: pointer;
+  outline: none;
+  /* Smooth transition (0.25s ease) on transform, box-shadow, and border-color only */
+  transition-property: transform, box-shadow, border-color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
+  will-change: transform, box-shadow;
+}
+
+/* Internal icon and arrow transitions */
+.service-card-icon {
+  display: inline-block;
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.service-card-arrow {
+  display: inline-block;
+  transition: transform 0.25s ease, color 0.25s ease;
+  will-change: transform;
+}
+
+/* Subtle press state on active/tap */
+.service-card:active {
+  transform: scale(0.98);
+}
+
+/* Hover and focus-visible on devices that support hover */
+@media (hover: hover) {
+  .service-card:hover,
+  .service-card:focus-visible {
+    /* Lift card up 6px with a soft, larger shadow & slight accent-colored border/glow */
+    transform: translateY(-6px);
+    box-shadow: 0 14px 28px -4px rgba(26, 111, 181, 0.12), 0 6px 12px -2px rgba(0, 0, 0, 0.05);
+    border-color: rgba(26, 111, 181, 0.45);
+  }
+
+  html.dark .service-card:hover,
+  html.dark .service-card:focus-visible,
+  [data-theme="dark"] .service-card:hover,
+  [data-theme="dark"] .service-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 14px 32px -4px rgba(0, 0, 0, 0.55), 0 0 16px 2px rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.55);
+  }
+
+  /* Scale icon slightly (1.1) */
+  .service-card:hover .service-card-icon,
+  .service-card:focus-visible .service-card-icon {
+    transform: scale(1.1);
+  }
+
+  /* Nudge arrow ~4px to the right */
+  .service-card:hover .service-card-arrow,
+  .service-card:focus-visible .service-card-arrow {
+    transform: translateX(4px);
+  }
+}
+
+/* Keyboard focus-visible focus ring for accessibility */
+.service-card:focus-visible {
+  outline: 2px solid var(--brand-color);
+  outline-offset: 2px;
+}
+
+/* Fallback for keyboard focus-visible on touch/non-hover devices */
+@media (hover: none) {
+  .service-card:focus-visible {
+    box-shadow: 0 10px 20px -3px rgba(26, 111, 181, 0.15);
+    border-color: rgba(26, 111, 181, 0.45);
+  }
+  html.dark .service-card:focus-visible,
+  [data-theme="dark"] .service-card:focus-visible {
+    box-shadow: 0 10px 24px -3px rgba(0, 0, 0, 0.5), 0 0 12px 1px rgba(56, 189, 248, 0.2);
+    border-color: rgba(56, 189, 248, 0.55);
+  }
+}
+
+/* Respect prefers-reduced-motion (no movement, just a shadow & border change) */
+@media (prefers-reduced-motion: reduce) {
+  .service-card,
+  .service-card:hover,
+  .service-card:focus-visible,
+  .service-card:active,
+  html.dark .service-card:hover,
+  html.dark .service-card:focus-visible,
+  [data-theme="dark"] .service-card:hover,
+  [data-theme="dark"] .service-card:focus-visible {
+    transform: none !important;
+  }
+
+  .service-card:hover .service-card-icon,
+  .service-card:focus-visible .service-card-icon,
+  .service-card:hover .service-card-arrow,
+  .service-card:focus-visible .service-card-arrow {
+    transform: none !important;
+  }
+}

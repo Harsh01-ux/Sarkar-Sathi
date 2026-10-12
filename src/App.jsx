@@ -15,8 +15,17 @@ function AppContent() {
   const location = useLocation();
 
   useEffect(() => {
+    if (location.hash) {
+      const timer = setTimeout(() => {
+        const el = document.querySelector(location.hash);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 60);
+      return () => clearTimeout(timer);
+    }
     window.scrollTo(0, 0);
-  }, [location.pathname]);
+  }, [location.pathname, location.hash]);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#f8f9fa] dark:bg-slate-900 text-gray-900 dark:text-slate-200">
