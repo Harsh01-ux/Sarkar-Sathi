@@ -51,47 +51,47 @@ export default function SearchBox({ large = false, initialValue = '' }) {
   return (
     <div className="w-full">
       <form onSubmit={handleSearch}>
-        <div className={`flex items-center bg-white border-2 rounded-lg shadow-sm transition-colors ${status === 'listening' ? 'border-brand-500' : 'border-gray-200 focus-within:border-brand-400'}`}>
-          <Search size={18} className="ml-4 text-gray-400 shrink-0" />
+        <div className={`flex items-center bg-white dark:bg-slate-800 border-2 rounded-lg shadow-sm transition-colors ${status === 'listening' ? 'border-brand-500 dark:border-sky-400' : 'border-gray-200 dark:border-slate-700 focus-within:border-brand-400 dark:focus-within:border-sky-500'}`}>
+          <Search size={18} className="ml-4 text-gray-400 dark:text-slate-500 shrink-0" />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={t.searchPlaceholder}
-            className={`flex-1 bg-transparent outline-none text-gray-800 placeholder-gray-400 ${large ? 'py-4 px-3 text-base' : 'py-3 px-3 text-sm'}`}
+            className={`flex-1 bg-transparent outline-none text-gray-800 dark:text-slate-100 placeholder-gray-400 dark:placeholder-slate-500 ${large ? 'py-4 px-3 text-base' : 'py-3 px-3 text-sm'}`}
             autoFocus={large}
           />
           {query && (
             <button
               type="button"
               onClick={clearQuery}
-              className="p-2 mx-1 text-gray-400 hover:text-gray-600 transition-colors"
+              className="p-2 mx-1 text-gray-400 dark:text-slate-400 hover:text-gray-600 dark:hover:text-slate-200 transition-colors"
               aria-label="Clear search"
             >
               <X size={16} />
             </button>
           )}
           {isSupported && (
-            <div className="flex items-center gap-1 mx-1 border-l pl-2 border-gray-200">
+            <div className="flex items-center gap-1 mx-1 border-l pl-2 border-gray-200 dark:border-slate-700">
               <button
                 type="button"
                 onClick={status === 'listening' ? stopListening : startListening}
                 className={`p-2 rounded transition-colors ${
                   status === 'listening'
-                    ? 'text-brand-500 bg-brand-50 listening-pulse'
-                    : 'text-gray-400 hover:text-brand-500 hover:bg-brand-50'
+                    ? 'text-brand-500 dark:text-sky-400 bg-brand-50 dark:bg-slate-700 listening-pulse'
+                    : 'text-gray-400 dark:text-slate-400 hover:text-brand-500 dark:hover:text-sky-400 hover:bg-brand-50 dark:hover:bg-slate-700'
                 }`}
                 aria-label={status === 'listening' ? 'Stop listening' : 'Start voice input'}
                 title={status === 'listening' ? 'Tap to stop' : 'Tap to speak'}
                 disabled={status === 'processing'}
               >
-                {status === 'processing' ? <Loader2 size={18} className="animate-spin text-brand-500" /> : status === 'listening' ? <MicOff size={18} /> : <Mic size={18} />}
+                {status === 'processing' ? <Loader2 size={18} className="animate-spin text-brand-500 dark:text-sky-400" /> : status === 'listening' ? <MicOff size={18} /> : <Mic size={18} />}
               </button>
             </div>
           )}
           <button
             type="submit"
-            className={`bg-brand-500 text-white font-medium rounded-md hover:bg-brand-600 transition-colors shrink-0 mr-1 ${large ? 'px-5 py-2.5 text-sm' : 'px-4 py-2 text-sm'}`}
+            className={`bg-brand-500 hover:bg-brand-600 dark:bg-sky-600 dark:hover:bg-sky-500 text-white font-medium rounded-md transition-colors shrink-0 mr-1 ${large ? 'px-5 py-2.5 text-sm' : 'px-4 py-2 text-sm'}`}
           >
             {isHi ? "खोजें" : "Search"}
           </button>
@@ -100,22 +100,22 @@ export default function SearchBox({ large = false, initialValue = '' }) {
       
       {/* Voice Status Messages */}
       {status === 'listening' && (
-        <p className="mt-2 text-sm text-brand-600 flex items-center gap-1.5">
-          <span className="inline-block w-2 h-2 bg-brand-500 rounded-full animate-pulse"></span>
+        <p className="mt-2 text-sm text-brand-600 dark:text-sky-400 flex items-center gap-1.5">
+          <span className="inline-block w-2 h-2 bg-brand-500 dark:bg-sky-400 rounded-full animate-pulse"></span>
           {isHi ? "सुन रहा हूँ... अब बोलें" : "Listening... speak now"}
         </p>
       )}
       {status === 'processing' && (
-        <p className="mt-2 text-sm text-brand-600 flex items-center gap-1.5">
+        <p className="mt-2 text-sm text-brand-600 dark:text-sky-400 flex items-center gap-1.5">
           <Loader2 size={12} className="animate-spin" />
           {isHi ? "प्रोसेसिंग..." : "Processing..."}
         </p>
       )}
       {status === 'error' && voiceError && (
-        <p className="mt-2 text-sm text-red-600">{voiceError}</p>
+        <p className="mt-2 text-sm text-red-600 dark:text-red-400">{voiceError}</p>
       )}
       {!isSupported && (
-        <p className="mt-2 text-xs text-amber-600">Voice input is not supported in this browser. Please try Chrome.</p>
+        <p className="mt-2 text-xs text-amber-600 dark:text-amber-400">Voice input is not supported in this browser. Please try Chrome.</p>
       )}
     </div>
   );

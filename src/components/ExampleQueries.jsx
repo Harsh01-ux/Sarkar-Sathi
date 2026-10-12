@@ -34,13 +34,13 @@ export default function ExampleQueries() {
 
   return (
     <div className="mt-5">
-      <p className="text-xs text-gray-500 mb-2.5 uppercase tracking-wide font-medium">{t.tryAskingAbout || (currentLang === 'hi' ? 'खोज कर देखें' : 'Try asking about')}</p>
+      <p className="text-xs text-gray-500 dark:text-slate-400 mb-2.5 uppercase tracking-wide font-medium">{t.tryAskingAbout || (currentLang === 'hi' ? 'खोज कर देखें' : 'Try asking about')}</p>
       <div className="flex flex-wrap gap-2">
         {examples[currentLang].map((ex) => (
           <button
             key={ex.query}
             onClick={() => handleClick(ex.query)}
-            className="px-3 py-1.5 bg-white border border-gray-200 rounded-full text-sm text-gray-700 hover:border-brand-400 hover:text-brand-600 hover:bg-brand-50 transition-colors"
+            className="px-3 py-1.5 bg-white dark:bg-slate-800 border border-gray-200 dark:border-slate-700 rounded-full text-sm text-gray-700 dark:text-slate-300 hover:border-brand-400 dark:hover:border-sky-500 hover:text-brand-600 dark:hover:text-sky-400 hover:bg-brand-50 dark:hover:bg-slate-700 transition-colors"
           >
             {ex.label}
           </button>
